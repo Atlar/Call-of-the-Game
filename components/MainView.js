@@ -24,7 +24,7 @@ export class MainView extends Component{
  render(){
  return(
  <View style={styles.buttonContainer}>
- <Text>
+ <Text style={styles.headline} >
  Hello, World! {this.state.text}
  </Text>
  <MainButton callOnPress={this.doCall} />
@@ -43,6 +43,10 @@ const styles=StyleSheet.create({
   alignItems:'center', 
   backgroundColor:'#301000',
   
+}, 
+headline:{
+ color:'#f0f0f0',
+ fontSize:23,
 }, 
  
 });

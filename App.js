@@ -7,7 +7,7 @@ import {MainView} from './components/MainView.js';
 //import AssetExample from './components/AssetExample';
 
 // or any pure javascript modules available in npm
-// import { Card } from 'react-native-elements'; // Version can be specified in package.json
+/import { Card } from 'react-native-elements'; // Version can be specified in package.json
 
 export default class App extends Component {
   render() {
@@ -18,7 +18,7 @@ export default class App extends Component {
           Save to get a shareable url.
         </Text>
         <Card title="Local Modules">
-         
+         <Text>Card Text.</Text>
         </Card>
       </MainView>
     );
@@ -41,5 +41,3 @@ const styles = StyleSheet.create({
     color: '#34495e',
   },
 });
-
-m

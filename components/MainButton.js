@@ -14,8 +14,8 @@ export class MainButton extends Component{
  
  render(){
  return(
- <TouchableHighlight style={styles.button} underlayColor={underlay}   onPress={this.handleTouch}>
- <View>
+ <TouchableHighlight underlayColor={underlay}   onPress={this.handleTouch}>
+ <View style={styles.button}>
  </View>
  </TouchableHighlight>
  );
