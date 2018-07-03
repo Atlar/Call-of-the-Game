@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet,TouchableHighlight} from 'react-native';
+import {View, Text, StyleSheet,TouchableHighlight, Animated} from 'react-native';
 
 export class RippleEffect extends Component{
  
@@ -7,23 +7,49 @@ export class RippleEffect extends Component{
  constructor(props){
  super(props);
  
- this.state={animOpacity:0,animSize:0};
+ this.state={
+ //set opacity animation
+ animOpacity:new Animated.Value(0.5),
+ //set size animation
+ animSize:new Animated.Value(0)};
 } 
  
  componentDidMount=() =>{
  
  //register animation
- this.props.registerAnim(startAnimation);
+ this.props.registerAnim(this.startAnimation);
  
 } 
- startAnimation = () => {} 
+ startAnimation = () => {
+ 
+ //animate opacity
+ 
+ Animated.timing(                  // Animate over time
+ this.state.animOpacity,            // The animated value to drive
+ {
+ toValue: 0,                   // Animate to opacity: 1 (opaque)
+ duration: 1000,              // Make it take a while
+ }
+ ).start();
+ 
+ //animate size
+ 
+ Animated.timing(                  // Animate over time
+ this.state.animSize,            // The animated value to drive
+ {
+ toValue: 100,                   // Animate to opacity: 1 (opaque)
+ duration: 1000,              // Make it take a while
+ }
+ ).start();
+ 
+ } 
 
  render(){
  return(
- <View >
- <View style={styles.button}>
+ <Animated.View style={{position:absolute,opacity:[{this.animOpacity}], height:[{this.state.animSize}] ,width:[{this.animSize}],} }>
+ <View>
  </View>
- </Vie>
+ </Animated.View>
  );
 } 
  
@@ -33,11 +59,10 @@ const underlay='#004010';
 
 const styles=StyleSheet.create({
  
- button:{
+ ripple:{
   justifyContent: 'center', 
   alignItems:'center', 
   backgroundColor:'#f013000',
-  width:100,
   heigth:100,
 },
  

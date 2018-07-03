@@ -15,6 +15,7 @@ export class MainView extends Component{
  
  this.setState({text:'Press'});
  //pass all animation to children
+ this.Anim1();
  
 } 
  registerAnimation =(animationCall) =>{
