@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {MainButton} from './MainButton.js';
+import {RippleEffect} from './RippleEffect.js';
 
 export class MainView extends Component{
  
@@ -27,6 +28,7 @@ export class MainView extends Component{
  <Text style={styles.headline} >
  Hello, World! {this.state.text}
  </Text>
+ <RippleEffect registerAnim={this.registerAnimation} />
  <MainButton callOnPress={this.doCall} />
  </View>
  );
