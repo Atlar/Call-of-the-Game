@@ -14,7 +14,7 @@ export class MainButton extends Component{
  
  render(){
  return(
- <TouchableHighlight onPress={this.handleTouch}>
+ <TouchableHighlight style={styles.button} underlayColor={underlay}   onPress={this.handleTouch}>
  <View>
  </View>
  </TouchableHighlight>
@@ -22,3 +22,18 @@ export class MainButton extends Component{
 } 
  
 } 
+
+const underlay='#004010';
+
+const styles=StyleSheet.create({
+ 
+ button:{
+  justifyContent: 'center', 
+  alignItems:'center', 
+  backgroundColor:'#f013000',
+  width:100,
+  heigth:100,
+},
+ 
+ 
+});
