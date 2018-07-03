@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { Constants } from 'expo';
+import {MainView} from './components/MainView.js';
 
 // You can import from local files
 //import AssetExample from './components/AssetExample';
@@ -11,7 +12,7 @@ import { Constants } from 'expo';
 export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <MainView style={styles.container}>
         <Text style={styles.paragraph}>
           Change code in the editor and watch it change on your phone!
           Save to get a shareable url.
@@ -19,7 +20,7 @@ export default class App extends Component {
         <Card title="Local Modules">
          
         </Card>
-      </View>
+      </MainView>
     );
   }
 }
@@ -40,3 +41,5 @@ const styles = StyleSheet.create({
     color: '#34495e',
   },
 });
+
+m
