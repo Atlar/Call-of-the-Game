@@ -7,9 +7,13 @@ export class RippleEffect extends Component{
  constructor(props){
  super(props);
  
+ const maxOpacity=0.5;
+ 
  this.state={
+ 
+ maxOpacity: maxOpacity, 
  //set opacity animation
- animOpacity:new Animated.Value(0.5),
+ animOpacity:new Animated.Value(maxOpacity),
  //set size animation
  animSize:new Animated.Value(0)};
 } 
@@ -20,7 +24,17 @@ export class RippleEffect extends Component{
  this.props.registerAnim(this.startAnimation);
  
 } 
+resetAnimation = () => {
+
+this.state.animOpacity.setValue(this.state.maxOpacity);
+this.state.animSize.setValue(0);
+
+} 
+
  startAnimation = () => {
+ 
+ //restart animations
+ this.resetAnimation();
  
  //animate opacity
  
@@ -37,16 +51,16 @@ export class RippleEffect extends Component{
  Animated.timing(                  // Animate over time
  this.state.animSize,            // The animated value to drive
  {
- toValue: 100,                   // Animate to opacity: 1 (opaque)
+ toValue: 500,                   // Animate to opacity: 1 (opaque)
  duration: 1000,              // Make it take a while
  }
- ).start();
+ ).start(this.resetAnimation);
  
  } 
 
  render(){
  return(
- <Animated.View style={{position:absolute,opacity:[{this.animOpacity}], height:[{this.state.animSize}] ,width:[{this.animSize}],} }>
+ <Animated.View style={[styles.ripple, {opacity:this.state.animOpacity, height:this.state.animSize ,width:this.animSize}]  }>
  <View>
  </View>
  </Animated.View>
@@ -62,8 +76,8 @@ const styles=StyleSheet.create({
  ripple:{
   justifyContent: 'center', 
   alignItems:'center', 
-  backgroundColor:'#f013000',
-  heigth:100,
+  backgroundColor:'#ff1300',
+  position:'absolute', 
 },
  
  
