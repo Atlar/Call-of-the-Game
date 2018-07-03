@@ -11,6 +11,9 @@ export class RippleEffect extends Component{
  
  this.state={
  
+ //set start size from props
+ startSize: props.startingSize,
+ 
  maxOpacity: maxOpacity, 
  //set opacity animation
  animOpacity:new Animated.Value(maxOpacity),
@@ -27,7 +30,7 @@ export class RippleEffect extends Component{
 resetAnimation = () => {
 
 this.state.animOpacity.setValue(this.state.maxOpacity);
-this.state.animSize.setValue(0);
+this.state.animSize.setValue(this.state.startSize);
 
 } 
 
@@ -42,7 +45,7 @@ this.state.animSize.setValue(0);
  this.state.animOpacity,            // The animated value to drive
  {
  toValue: 0,                   // Animate to opacity: 1 (opaque)
- duration: 1000,              // Make it take a while
+ duration: 300,              // Make it take a while
  }
  ).start();
  
@@ -52,7 +55,7 @@ this.state.animSize.setValue(0);
  this.state.animSize,            // The animated value to drive
  {
  toValue: 500,                   // Animate to opacity: 1 (opaque)
- duration: 1000,              // Make it take a while
+ duration: 300,              // Make it take a while
  }
  ).start(this.resetAnimation);
  
@@ -60,7 +63,7 @@ this.state.animSize.setValue(0);
 
  render(){
  return(
- <Animated.View style={[styles.ripple, {opacity:this.state.animOpacity, height:this.state.animSize ,width:this.animSize}]  }>
+ <Animated.View style={[styles.ripple, {opacity:this.state.animOpacity, height:this.state.animSize ,width:this.state.animSize}]  }>
  <View>
  </View>
  </Animated.View>

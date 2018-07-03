@@ -29,7 +29,7 @@ export class MainView extends Component{
  <Text style={styles.headline} >
  Hello, World! {this.state.text}
  </Text>
- <RippleEffect registerAnim={this.registerAnimation} />
+ <RippleEffect startingSize={100} registerAnim={this.registerAnimation} />
  <MainButton callOnPress={this.doCall} />
  </View>
  );
