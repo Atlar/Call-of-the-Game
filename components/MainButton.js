@@ -8,7 +8,7 @@ export class MainButton extends Component{
  handleTouch=() =>{
  
  //call parent function activate animations
- this.props.callOnTouchthis.props.callOnPress();
+ this.props.callOnPress();
  
  } 
  
@@ -16,6 +16,7 @@ export class MainButton extends Component{
  return(
  <TouchableHighlight underlayColor={underlay}   onPress={this.handleTouch}>
  <View style={styles.button}>
+ <Text>Press</Text>
  </View>
  </TouchableHighlight>
  );
@@ -30,9 +31,9 @@ const styles=StyleSheet.create({
  button:{
   justifyContent: 'center', 
   alignItems:'center', 
-  backgroundColor:'#f013000',
+  backgroundColor:'#f01300',
   width:100,
-  heigth:100,
+  height:100,
 },
  
  

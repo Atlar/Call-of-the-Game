@@ -7,7 +7,7 @@ import {MainView} from './components/MainView.js';
 //import AssetExample from './components/AssetExample';
 
 // or any pure javascript modules available in npm
-/import { Card } from 'react-native-elements'; // Version can be specified in package.json
+import { Card } from 'react-native-elements'; // Version can be specified in package.json
 
 export default class App extends Component {
   render() {

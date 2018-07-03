@@ -38,7 +38,7 @@ const styles=StyleSheet.create({
  
  buttonContainer:{
   flex:1,
-  flexDirection: 'row', 
+  flexDirection: 'column', 
   justifyContent: 'center', 
   alignItems:'center', 
   backgroundColor:'#301000',
