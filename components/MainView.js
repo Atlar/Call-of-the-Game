@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {MainButton} from 'MainButton.js';
+import {MainButton} from './components/MainButton.js';
 
 export class MainView extends Component{
  
@@ -18,7 +18,7 @@ export class MainView extends Component{
 } 
  render(){
  return(
- <View>
+ <View style={styles.buttonContainer}>
  <Text>
  Hello, World! 
  </Text>
@@ -28,3 +28,14 @@ export class MainView extends Component{
 } 
  
 } 
+
+const styles=StyleSheet.create({
+ 
+ buttonContainer:{
+  flex:0.3,
+  flexDirection: 'row', 
+  justifyContent: 'center', 
+  
+}, 
+ 
+});
