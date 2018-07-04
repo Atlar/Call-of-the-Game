@@ -18,13 +18,20 @@ export class RippleEffect extends Component{
  //set opacity animation
  animOpacity:new Animated.Value(maxOpacity),
  //set size animation
- animSize:new Animated.Value(0)};
+ animSize:new Animated.Value(0), 
+ 
+ positionX: 0,
+ positionY: 0,
+ strength: 1,
+ 
+ };
 } 
  
  componentDidMount=() =>{
  
  //register animation
- this.props.registerAnim(this.startAnimation);
+ //this.props.registerAnim(this.startAnimation);
+ this.props.registerAnim(this.animateOnLocation, this.props.id);
  
 } 
 resetAnimation = () => {
@@ -54,16 +61,36 @@ this.state.animSize.setValue(this.state.startSize);
  Animated.timing(                  // Animate over time
  this.state.animSize,            // The animated value to drive
  {
- toValue: 500,                   // Animate to opacity: 1 (opaque)
+ toValue: 20,                   // Animate to opacity: 1 (opaque)
  duration: 300,              // Make it take a while
  }
- ).start(this.resetAnimation);
+ ).start(
+ 	 () => {this.resetAnimation;
+ 	 		this.props.onFinish(this.props.id);
+ 	} );
  
  } 
 
+//setup new location and strength and start animation
+animateOnLocation=(rippleData) =>{
+this.changeRippleState(rippleData);
+this.startAnimation();
+} 
+
+//change location and strength
+changeRippleState=(rippleData) ={
+
+//change location and strength
+this.setState({positionX: rippleData.positionX,
+ positionY:rippleData.positionY,
+  strength: rippleData.strength} );
+
+} 
+
+
  render(){
  return(
- <Animated.View style={[styles.ripple, {opacity:this.state.animOpacity, height:this.state.animSize ,width:this.state.animSize}]  }>
+ <Animated.View style={[styles.ripple, {opacity:this.state.animOpacity, height:this.state.animSize ,width:this.state.animSize, top:100, right: this.state.positionX}]  }>
  <View>
  </View>
  </Animated.View>
