@@ -14,7 +14,7 @@ export class RippleSpawner extends Component {
 
         this.state = {
             //array of ripples
-            ripples: [{}],
+            ripples: [{positionX:0, positionY:0, strength:1}],
             //ripples {id, startAnimFunction} 
             ready: false,
             text: '',
@@ -47,7 +47,7 @@ export class RippleSpawner extends Component {
         for (var i = 0; i < bufferedNum; i++) {
             //remove last from buffer 
             var newRipple = this.buffer.pop();
-            this.bufferSize = max(0, this.bufferSize - 1);
+            this.bufferSize = Math.max(0, this.bufferSize - 1);
 
             //buffer has only registered ripples bu check
             if (newRipple.hasOwnProperty('startAnimFunction')) {
@@ -69,7 +69,7 @@ export class RippleSpawner extends Component {
             this.setState({ text: 'has prop' });
             if (this.state.ripples !== undefined) {
                 if (this.state.ripples.length > 0) {
-                    this.setState(this.state.ripples.concat(spawnQueue));
+                    this.setState({ ripples: this.state.ripples.concat(spawnQueue)} );
                     this.setState({ text: 'not undef - concat' });
                 } else {
                     this.setState({ ripples: spawnQueue });   
@@ -130,17 +130,17 @@ export class RippleSpawner extends Component {
 
     //find id in array of ripples and set anim function
     registerAnimationById = (animFunction, id) => {
+        
+        var ripplesUpdated = this.state.ripples;
+        ripplesUpdated.forEach(
+        		(item, i) => {
+        			if (item.id == id) {
+       					 item.startAnimFunction = animFunction;
+       				 }
+     			   }
+      		  	)
         //state must be new array 
-        this.setState(
-            {ripples: this.state.ripples.forEach(
-                (item, i) => {
-                    if (item.id == id) {
-                        item.startAnimFunction = animFunction;
-                    }
-                }
-            )
-            }
-        );
+        this.setState({ripples: ripplesUpdated});
 
     }
     //add ripple to buffer until next call
