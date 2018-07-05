@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {MainButton} from './MainButton.js';
 import {RippleEffect} from './RippleEffect.js';
-import {RippleSpawner} from './RippleSpawner.js';
+import { RippleSpawner } from './RippleSpawner.js';
+import { PinLayer } from './PinLayer.js';
 
 export class MainView extends Component{
  
@@ -43,13 +44,15 @@ registerSpawn =(spawnFunction) => {
 } 
  render(){
  return(
- <View style={styles.buttonContainer}>
- <Text style={styles.headline} >
- Hello, World! {this.state.text}
- </Text>
- <RippleSpawner style={{flex:1}} registerFunction={this.registerSpawn}/>
- <MainButton callOnPress={this.doCall} />
- </View>
+     <View style={styles.buttonContainer}>
+             <Text style={styles.headline} >
+                Hello, World! {this.state.text}
+             </Text>
+             <PinLayer>
+                <RippleSpawner style={{ flex: 1 }} registerFunction={this.registerSpawn} />
+             </PinLayer>
+         <MainButton callOnPress={this.doCall} />
+     </View>
  );
 }
  
