@@ -21,7 +21,7 @@ export class MainView extends Component{
  
  //Spawn Ripples
  //setupe array of ripples to spawn
- RipplesSeed = [ 10, 15,20,25,30,35];
+ let RipplesSeed = [ 10, 15,20,25,30,35];
  
  this.SpawnRipples(
  	RipplesSeed.map( //init array of ripplesand feed it to spawn
@@ -47,7 +47,7 @@ registerSpawn =(spawnFunction) => {
  <Text style={styles.headline} >
  Hello, World! {this.state.text}
  </Text>
- <RippleSpawner style={{flex:1}} registerFunction={}/>
+ <RippleSpawner style={{flex:1}} registerFunction={this.registerSpawn}/>
  <MainButton callOnPress={this.doCall} />
  </View>
  );

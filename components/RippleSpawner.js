@@ -38,15 +38,15 @@ export class RippleSpawner extends Component {
         //ripples {strength,positionX, positionY}
 
         //get num to spawn
-        spawnNum = ripples.length;
+        var spawnNum = ripples.length;
 
         
 
-        bufferedNum = Math.min(this.bufferSize, spawnNum);
+        var bufferedNum = Math.min(this.bufferSize, spawnNum);
 
-        for (i = 0; i < bufferedNum; i++) {
+        for (var i = 0; i < bufferedNum; i++) {
             //remove last from buffer 
-            newRipple = this.buffer.pop();
+            var newRipple = this.buffer.pop();
             this.bufferSize = max(0, this.bufferSize - 1);
 
             //buffer has only registered ripples bu check
@@ -57,7 +57,7 @@ export class RippleSpawner extends Component {
 
         }
         //add rest to the spawnqueu
-        spawnQueue = ripples.slice(bufferedNum).map((item,i) => this.createRippleEntry(item, i));
+        var spawnQueue = ripples.slice(bufferedNum).map((item,i) => this.createRippleEntry(item, i));
 
         //sl = ripples.slice(bufferedNum);
         //qu = sl.map((item, i) => this.createRippleEntry(item, i));
@@ -151,7 +151,7 @@ export class RippleSpawner extends Component {
             this.state.ripples.find(
                 (item) => item.id == id)
         );
-        bufferSize = this.buffer.length;
+        this.bufferSize = this.buffer.length;
     }
 
     //register ripple spawn function
