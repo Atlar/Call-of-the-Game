@@ -46,7 +46,7 @@ export class RippleEffect extends Component{
     } 
 
      startAnimation = () => {
- 
+ 		 var zeroSize;
          //restart animations( set initial size)
          this.resetAnimation( zeroSize = 0 );
  
