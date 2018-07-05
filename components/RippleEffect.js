@@ -85,9 +85,11 @@ export class RippleEffect extends Component{
     changeRippleState=(rippleData) =>{
 
         //change location and strength
-        this.setState({positionX: rippleData.positionX,
-         positionY:rippleData.positionY,
-          strength: rippleData.strength} );
+        var {positionX, positionY, strength} = rippleData;
+        
+        this.setState({positionX: positionX,
+         positionY: positionY,
+          strength: strength} );
 
     } 
 

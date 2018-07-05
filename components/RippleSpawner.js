@@ -147,6 +147,7 @@ export class RippleSpawner extends Component {
     addToBuffer = (id) => {
 
         //find ripple by id and add to buffer
+       
         this.buffer.push(
             this.state.ripples.find(
                 (item) => item.id == id)
