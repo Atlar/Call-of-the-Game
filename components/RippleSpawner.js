@@ -14,7 +14,7 @@ export class RippleSpawner extends Component {
 
         this.state = {
             //array of ripples
-            ripples: [],
+            ripples: [{}],
             //ripples {id, startAnimFunction} 
             ready: false,
             text: '',
