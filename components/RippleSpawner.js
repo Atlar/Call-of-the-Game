@@ -14,7 +14,7 @@ export class RippleSpawner extends Component {
 
         this.state = {
             //array of ripples
-            ripples: [{positionX:0, positionY:0, strength:1}],
+            ripples: [],
             //ripples {id, startAnimFunction} 
             ready: false,
             text: '',
@@ -208,6 +208,7 @@ resetAnimation = () => {
                 <Text style={{ color: '#ffffff', }}>{this.state.ripples.length +' ' + this.state.text}</Text>
                 {/*this.state.hasOwnProperty('ripples') &&*/ this.state.ripples.map(({ id, initialData }) =>
                     <RippleEffect key={id} id={id} onFinish={this.addToBuffer} registerAnim={this.registerAnimationById} initialData={initialData} startingSize={0} />
+                
                 )}
                 {/*this.props.children*/}
             </View>);
