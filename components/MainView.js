@@ -5,6 +5,7 @@ import { RippleEffect } from './RippleEffect.js';
 import { RippleSpawner } from './RippleSpawner.js';
 import { PinLayer } from './PinLayer.js';
 import { Gridder } from './Gridder.js';
+import { PinLayerCross}  from './PinLayerCross.js';
 import SocketIO from 'socket.io-client';
 
 export class MainView extends Component {
@@ -93,11 +94,11 @@ export class MainView extends Component {
                     Hello, World! {this.state.text}
                 </Text>
                 <ImageBackground onLayout={this.saveImageDimensions} source={require("../resources/RusMap.png")} resizeMode="contain" style={{ width: '100%', height: '100%', /*backgroundColor:'#fab0a1'*/ }} >
-                    <PinLayer pinListener={this.handlePinPos}>
+                    <PinLayerCross pinListener={this.handlePinPos}>
                         <RippleSpawner style={{ flex: 1 }} registerFunction={this.registerSpawn}>
 
                         </RippleSpawner>
-                    </PinLayer>
+                    </PinLayerCross>
                 </ImageBackground>
                 <MainButton callOnPress={this.doCall} />
             </View>
