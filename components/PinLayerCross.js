@@ -27,11 +27,13 @@ export class PinLayerCross extends Component {
             //respond to move
             onPanResponderGrant: (e, gestureState) => {
                 this.pull = true;
+                this.state.pinXY.setValue({ x: -gestureState.x, y: -gestureState.y });
+                this.state.pinXY.setOffset({ x: this.pinPos.x, y: this.pinPos.y });
                 setTimeout(() => {
                     if (this.pull) {
                         this.pinFix = false;
-                        this.state.pinXY.setOffset({ x: 0, y: 0 });
-                        this.state.pinXY.setValue({ x: this.pinPos.x, y: this.pinPos.y });
+                        //this.state.pinXY.setOffset({ x: 0, y: 0 });
+                        //this.state.pinXY.setValue({ x: this.pinPos.x, y: this.pinPos.y });
                         //place for ready-to-move animation
                     }
                 }, 300);
@@ -49,11 +51,11 @@ export class PinLayerCross extends Component {
             onPanResponderMove: (e, gesture) => {
                 this.pull = true;
                 if (!this.pinFix) {
-                    this.state.pinXY.setOffset({ x: 0, y: 0 });
+                    //this.state.pinXY.setOffset({ x: 0, y: 0 });
                     //move with fingers
                     Animated.spring(this.state.pinXY, {
                         toValue: { x: gesture.dx, y: gesture.dy},
-                        friction: 3
+                        friction: 5
                     }).start();
                 }},
                 //on release
@@ -62,7 +64,7 @@ export class PinLayerCross extends Component {
                 //if changed pos
                 if (!this.pinFix) {
                 	//calculate new pos
-                    this.pinPos = { x: gesture.x0 + gesture.dx, y: gesture.y0 + gesture.moveYgesture.dy };
+                    this.pinPos = { x:this._val.x, y: this._val.y };
                     //send new pose
                     this.sendPinData(this.pinPos);
                     //confirmation animation
@@ -79,17 +81,18 @@ export class PinLayerCross extends Component {
                 }
                 this.pinFix = true;
                 this.pull = false;
-                this.state.pinXY.setValue({ x: this.pinPos.x, y: this.pinPos.y });
+                //this.state.pinXY.setValue({ x: this.pinPos.x, y: this.pinPos.y });
                 //return to position animation
-                Animated.timing(this.state.pinXY, {
-                    toValue: { x: this.pinPos.x, y: this.pinPos.y },
+                /*Animated.timing(this.state.pinXY, {
+                    toValue: { x: 0, y: 0 },
                     duration: 50,
-                }, ).start();
+                }, ).start();*/
                 //fade back
               	Animated.timing(
                 	this.state.ready,{
                 	toValue: 0,
-                	duration: 1000,}).delay(300);
+                	duration: 1000,
+                	delay:300,}).start();
                 //this.state.pinXY.setOffset({x: this.state.pinXY.x._value, y: this.state.pinXY.y._value});
             }
 

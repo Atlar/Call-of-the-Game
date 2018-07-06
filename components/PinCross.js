@@ -4,11 +4,12 @@ import {View, Animated, PanResponder, StyleSheet} from 'react-native' ;
 export class PinCross extends Component{
 
 	render() {
-		<Animated.View style={styles.host, this.props.style}>
-			<View style={[styles.common,styles.vertical]} />
-			<View style={[styles.common,styles.horizontal]} />
-		</Animated.View>
-	
+		return(
+			<Animated.View style={styles.host, this.props.style}>
+				<View style={[styles.common,styles.vertical]} />
+				<View style={[styles.common,styles.horizontal]} />
+			</Animated.View>
+	);
 	} 
 
 } 
@@ -27,14 +28,15 @@ const styles={
 		{
 			flexDirection: 'column', 
 			width:LINE_WIDTH,
-		} 
+		}, 
 		horizontal:
 		{
 			flexDirection: 'row', 
 			height:LINE_WIDTH, 
-		} 
+		}, 
 		host:
 		{
-			position:'absolute';
-		} 
+			flex: 1,
+			position:'absolute', 
+		}, 
 } 

@@ -93,7 +93,7 @@ export class MainView extends Component {
                 <Text style={styles.headline} >
                     Hello, World! {this.state.text}
                 </Text>
-                <ImageBackground onLayout={this.saveImageDimensions} source={require("../resources/RusMap.png")} resizeMode="contain" style={{ width: '100%', height: '100%', /*backgroundColor:'#fab0a1'*/ }} >
+                <ImageBackground onLayout={this.saveImageDimensions} source={"../resources/RusMap.png"} resizeMode="contain" style={{ width: '100%', height: '100%', /*backgroundColor:'#fab0a1'*/ }} >
                     <PinLayerCross pinListener={this.handlePinPos}>
                         <RippleSpawner style={{ flex: 1 }} registerFunction={this.registerSpawn}>
 
