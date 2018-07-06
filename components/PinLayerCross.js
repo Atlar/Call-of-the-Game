@@ -41,10 +41,18 @@ export class PinLayerCross extends Component {
                 }, 300);
                 //starting animation
                 //starts immediately
-                Animated.timing(
+                Animated.sequence([Animated.timing(
                   this.state.ready,{
                       toValue: 0.5,
-                      duration: 300,}).start();
+                      duration: 250,}), 
+                      Animated.timing(
+                      this.state.ready,{
+                      toValue: 1,
+                      duration: 10,}), 
+                      Animated.timing(
+                      this.state.ready,{
+                      toValue: 0.5,
+                      duration: 40,})]).start();
                                                                     
             },
             //respond to touch
@@ -90,11 +98,12 @@ export class PinLayerCross extends Component {
                     duration: 50,
                 }, ).start();*/
                 //fade back
+                setTimeout(()=>
               	Animated.timing(
                 	this.state.ready,{
                 	toValue: 0,
                 	duration: 1000,
-                	delay:300,}).start();
+                	}).start(), 300);
                 //this.state.pinXY.setOffset({x: this.state.pinXY.x._value, y: this.state.pinXY.y._value});
             }
 
@@ -121,7 +130,7 @@ export class PinLayerCross extends Component {
        
         return (
             <View style={styles.pinField} {...this.panRespond.panHandlers}>
-            <PinCross style={PinStyle} />
+            <PinCross style={PinStyle} trans={{opacity: this.state.ready} } />
                 {this.props.children}
             </View>
         );
