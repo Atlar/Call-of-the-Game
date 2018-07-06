@@ -114,11 +114,11 @@ export class PinLayerCross extends Component {
         const PinStyle = {
             position: 'absolute',
             transform: this.state.pinXY.getTranslateTransform(),
-            opacity: this.state.ready;
+            opacity: this.state.ready, 
         }
         return (
             <View style={styles.pinField} {...this.panRespond.panHandlers}>
-                <PinCross style={[PinStyle} />
+                <PinCross style={PinStyle} />
                 {this.props.children}
             </View>
         );
