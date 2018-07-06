@@ -6,8 +6,8 @@ export class PinCross extends Component{
 	render() {
 		return(
 			<Animated.View style={styles.host, this.props.style}>
-				<View style={[styles.common,styles.vertical]} />
-				<View style={[styles.common,styles.horizontal]} />
+				<Animated.View style={[styles.common,styles.vertical,{opacity :this.props.style.opacity} ]} />
+				<Animated.View style={[styles.common,styles.horizontal, {opacity :this.props.style.opacity}]} />
 			</Animated.View>
 	);
 	} 

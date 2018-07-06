@@ -22,12 +22,14 @@ export class PinLayerCross extends Component {
         this._val = { x: 0, y: 0 };
         this.state.pinXY.addListener((value) => this._val = value);
 
-        this.panRespond = PanResponder.create({
+		this.state.ready.setValue(0);
 
+        this.panRespond = PanResponder.create({
+		
             //respond to move
             onPanResponderGrant: (e, gestureState) => {
                 this.pull = true;
-                this.state.pinXY.setValue({ x: -gestureState.x, y: -gestureState.y });
+                this.state.pinXY.setValue({ x: -gestureState.dx, y: -gestureState.dy });
                 this.state.pinXY.setOffset({ x: this.pinPos.x, y: this.pinPos.y });
                 setTimeout(() => {
                     if (this.pull) {
@@ -41,7 +43,7 @@ export class PinLayerCross extends Component {
                 //starts immediately
                 Animated.timing(
                   this.state.ready,{
-                      toValue: 0.9,
+                      toValue: 0.5,
                       duration: 300,}).start();
                                                                     
             },
@@ -60,7 +62,7 @@ export class PinLayerCross extends Component {
                 }},
                 //on release
             onPanResponderRelease: (e, gesture) => {
-                this.state.pinXY.setOffset({ x: 0, y: 0 });
+                //this.state.pinXY.setOffset({ x: 0, y: 0 });
                 //if changed pos
                 if (!this.pinFix) {
                 	//calculate new pos
@@ -75,8 +77,8 @@ export class PinLayerCross extends Component {
                     duration: 50,}),
                      Animated.timing(
                      this.state.ready,{
-                     toValue: 0.9,
-                     duration: 50,})
+                     toValue: 0.5,
+                     duration: 100,})
                      ]).start();
                 }
                 this.pinFix = true;
@@ -116,9 +118,10 @@ export class PinLayerCross extends Component {
             transform: this.state.pinXY.getTranslateTransform(),
             opacity: this.state.ready, 
         }
+       
         return (
             <View style={styles.pinField} {...this.panRespond.panHandlers}>
-                <PinCross style={PinStyle} />
+            <PinCross style={PinStyle} />
                 {this.props.children}
             </View>
         );
